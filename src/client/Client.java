@@ -27,7 +27,7 @@ public class Client {
 
     public static void main(String[] args) {
         try {
-            Socket socket = new Socket("localhost", 5000);
+            Socket socket = new Socket("54.204.163.176", 5000);
             char[][] board = createBoard();
             new GameGUI(board, socket);
         } catch (IOException e) {
