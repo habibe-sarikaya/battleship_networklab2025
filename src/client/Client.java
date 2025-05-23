@@ -1,13 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-
-/**
- *
- * @author Habibe
- */
-
 package client;
 
 import java.io.*;
@@ -28,8 +18,14 @@ public class Client {
     public static void main(String[] args) {
         try {
             Socket socket = new Socket("54.204.163.176", 5000);
+            BufferedReader input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            PrintWriter output = new PrintWriter(socket.getOutputStream(), true);
+
             char[][] board = createBoard();
-            new GameGUI(board, socket);
+
+            GameGUI gui = new GameGUI(board, socket, input, output);
+            gui.start();  // yeni oyun başlatır
+
         } catch (IOException e) {
             e.printStackTrace();
         }
